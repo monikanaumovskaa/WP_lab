@@ -1,0 +1,132 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add New Performer to Song</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .jumbotron {
+            background-color: #0056b3;
+            color: white;
+            padding: 30px 0;
+        }
+
+        .jumbotron-heading {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .table th, .table td {
+            text-align: center;
+        }
+
+        .table-striped tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+
+        .container {
+            max-width: 1100px;
+        }
+
+        .col-md-8, .col-md-4 {
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .d-flex {
+            margin-top: 20px;
+        }
+
+        .ml-3 {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Select Artist to Add as Performer</h1>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <!-- Artist Selection Section -->
+            <div class="col-md-8">
+                <h2 class="mb-4">Select Artist:</h2>
+                <form th:method="POST" th:action="@{/artist}">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="artist : ${artists}">
+                            <td>
+                                <input type="radio" name="artistId" th:value="${artist.getId()}" required>
+                            </td>
+                            <td th:text="${artist.firstName}">Artist First Name</td>
+                            <td th:text="${artist.lastName}">Artist Last Name</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Select</button>
+                        <a href="/songs" class="btn btn-secondary ml-3">Back to Songs</a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-4">
+                <h3 class="mb-4">Selected Song:</h3>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Track ID</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${trackId}">No track selected</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

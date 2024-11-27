@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Song Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f5f8fa; /* Light background */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .jumbotron {
+            background-color: #9b59b6; /* Light purple */
+            color: white;
+            padding: 40px 0;
+        }
+
+        .jumbotron-heading {
+            font-size: 2.8rem;
+            font-weight: bold;
+        }
+
+        .list-group-item {
+            background-color: #ecf0f1; /* Light gray */
+            border: 1px solid #bdc3c7;
+            margin-bottom: 10px;
+        }
+
+        .list-group-item span {
+            font-weight: bold;
+        }
+
+        .list-group-item:hover {
+            background-color: #dcdfe1; /* Slightly darker gray on hover */
+        }
+
+        .btn-primary {
+            background-color: #1abc9c; /* Teal */
+            border-color: #1abc9c;
+        }
+
+        .btn-primary:hover {
+            background-color: #16a085;
+            border-color: #16a085;
+        }
+
+        h2 {
+            color: #2ecc71; /* Soft green */
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        .d-flex {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading" th:text="${songTitle}">Song Title</h1>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Details</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>Genre:</strong> <span th:text="${songGenre}">Genre</span>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Release Year:</strong> <span th:text="${songRelease}">Year</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h2>Performers</h2>
+                <ul class="list-group">
+                    <li class="list-group-item" th:each="artist : ${songPerformers}" th:text="|${artist.firstName} ${artist.lastName}|">
+                        Performer Name
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end mt-4">
+            <a href="/artist" class="btn btn-primary">Back to Artists</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
